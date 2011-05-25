@@ -1,0 +1,5 @@
+name = STScode Query Tokens
+description = Provides additional tokens from the url query items.
+dependencies[] = token
+core = 6.x
+

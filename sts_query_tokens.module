@@ -1,0 +1,50 @@
+<?php
+
+
+/**
+ * @file
+ * The Token API module.
+ *
+ * @ingroup token
+ */
+
+/**
+ * Implementation of hook_token_list().
+ */
+function sts_query_tokens_token_list($type = 'all') {
+  $tokens = array();
+  if ($type == 'global' || $type == 'all') {
+    $tokens['global']['query-name'] = t('The value of the field <em>name</em> from the url query string.');
+  }
+  if ($type == 'node' || $type == 'all') {
+    // Node tokens here.
+  }
+
+  return $tokens;
+}
+
+/**
+ * Implementation of hook_token_values().
+ */
+function sts_query_tokens_token_values($type, $object = NULL, $options = array()) {
+  $values = array();
+  switch ($type) {
+    case 'global':
+      // Create query tokens.
+      $url = parse_url($_SERVER['REQUEST_URI']);
+      $query = $url['query'];
+      if (isset($query) && $query != '') {
+        $output = array();
+        parse_str($query, $output);
+        foreach ($output as $field => $value) {
+          $values['query-' . $field] = $value;
+        }
+      }
+      break;
+    case 'node':
+      // Node tokens here.
+      break;
+  }
+  return $values;
+}
+
