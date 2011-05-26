@@ -44,7 +44,6 @@ function sts_query_tokens_token_values($type, $object = NULL, $options = array()
       // Node tokens here.
       break;
   }
-dsm($values);
   return $values;
 }
 
