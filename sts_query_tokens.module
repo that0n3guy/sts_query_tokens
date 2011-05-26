@@ -30,6 +30,7 @@ function sts_query_tokens_token_values($type, $object = NULL, $options = array()
   $values = array();
   switch ($type) {
     case 'global':
+      $url = parse_url($_SERVER['REQUEST_URI']);
       $query = $url['query'];
       if (isset($query) && $query != '') {
         $output = array();
@@ -43,6 +44,7 @@ function sts_query_tokens_token_values($type, $object = NULL, $options = array()
       // Node tokens here.
       break;
   }
+dsm($values);
   return $values;
 }
 
